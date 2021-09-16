@@ -11,7 +11,7 @@ namespace Igi_project.Components
     {
         private List<MenuItem> _menuItems = new List<MenuItem>
             {
-                new MenuItem{ Controller="Home", Action="Index", Text="Lab 2"},
+                new MenuItem{ Controller="Home", Action="Index", Text="Lab 3"},
                 new MenuItem{ Controller="Product", Action="Index",
                 Text="Каталог"},
                 new MenuItem{ IsPage=true, Area="Admin", Page="/Index",
