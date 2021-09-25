@@ -1,5 +1,6 @@
 ﻿using System;
 using Igi_project.Data;
+using Igi_project.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;

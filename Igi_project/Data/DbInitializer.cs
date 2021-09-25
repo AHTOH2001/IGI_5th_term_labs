@@ -23,7 +23,8 @@ namespace Igi_project.Data
                     Name = "admin",
                     NormalizedName = "admin"
                 };
-                // создать роль adminawait roleManager.CreateAsync(roleAdmin);
+                // создать роль admin
+                await roleManager.CreateAsync(roleAdmin);
             }
             // проверка наличия пользователей
             if (!context.Users.Any())

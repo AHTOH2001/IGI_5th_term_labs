@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Igi_project.Entities
 {
-    public class ApplicationUser:IdentityUser
+    public class ApplicationUser : IdentityUser
     {
+        public byte[] AvatarImage { get; set; }
     }
 }
