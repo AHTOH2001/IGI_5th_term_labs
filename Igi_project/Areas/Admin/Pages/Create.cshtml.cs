@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Igi_project.Data;
 using Igi_project.Entities;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Igi_project
 {
     public class CreateModel : PageModel
     {
         private readonly Igi_project.Data.ApplicationDbContext _context;
-
-        public CreateModel(Igi_project.Data.ApplicationDbContext context)
+        private readonly IWebHostEnvironment _environment;
+        public CreateModel(Igi_project.Data.ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _environment = env;
         }
 
         public IActionResult OnGet()
@@ -27,6 +31,8 @@ namespace Igi_project
 
         [BindProperty]
         public Dish Dish { get; set; }
+        [BindProperty]
+        public IFormFile Image { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -39,7 +45,19 @@ namespace Igi_project
 
             _context.Dishes.Add(Dish);
             await _context.SaveChangesAsync();
-
+            if (Image != null)
+            {
+                var fileName = $"{Dish.DishId}" +
+                Path.GetExtension(Image.FileName);
+                Dish.Image = fileName;
+                var path = Path.Combine(_environment.WebRootPath, "Images",
+                fileName);
+                using (var fStream = new FileStream(path, FileMode.Create))
+                {
+                    await Image.CopyToAsync(fStream);
+                }
+                await _context.SaveChangesAsync();
+            }
             return RedirectToPage("./Index");
         }
     }

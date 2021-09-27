@@ -8,20 +8,27 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Igi_project.Data;
 using Igi_project.Entities;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Igi_project
 {
     public class EditModel : PageModel
     {
         private readonly Igi_project.Data.ApplicationDbContext _context;
-
-        public EditModel(Igi_project.Data.ApplicationDbContext context)
+        private IWebHostEnvironment _environment;
+        public EditModel(ApplicationDbContext context,
+        IWebHostEnvironment env)
         {
             _context = context;
+            _environment = env;
         }
 
         [BindProperty]
         public Dish Dish { get; set; }
+        [BindProperty]
+        public IFormFile Image { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -37,7 +44,7 @@ namespace Igi_project
             {
                 return NotFound();
             }
-           ViewData["DishGroupId"] = new SelectList(_context.DishGroups, "DishGroupId", "DishGroupId");
+            ViewData["DishGroupId"] = new SelectList(_context.DishGroups, "DishGroupId", "GroupName");
             return Page();
         }
 
@@ -49,7 +56,18 @@ namespace Igi_project
             {
                 return Page();
             }
-
+            if (Image != null)
+            {
+                var fileName = $"{Dish.DishId}" +
+                Path.GetExtension(Image.FileName);
+                Dish.Image = fileName;
+                var path = Path.Combine(_environment.WebRootPath, "Images",
+                fileName);
+                using (var fStream = new FileStream(path, FileMode.Create))
+                {
+                    await Image.CopyToAsync(fStream);
+                }
+            }
             _context.Attach(Dish).State = EntityState.Modified;
 
             try
