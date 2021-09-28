@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Http;
 using Igi_project.Services;
 using Igi_project.Models;
+using Microsoft.Extensions.Logging;
+using Igi_project.Extensions;
 
 namespace Igi_project
 {
@@ -70,8 +72,11 @@ namespace Igi_project
             IWebHostEnvironment env,
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            ILoggerFactory logger)
         {
+            logger.AddFile("Logs/log-{Date}.txt");
+            app.UseFileLogging();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

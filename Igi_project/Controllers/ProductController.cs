@@ -7,23 +7,31 @@ using Igi_project.Entities;
 using Igi_project.Extensions;
 using Igi_project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Igi_project.Controllers
 {
     public class ProductController : Controller
     {
-        ApplicationDbContext _context;        
+        ApplicationDbContext _context;
         int _pageSize;
-        public ProductController(ApplicationDbContext context)
+        private ILogger _logger;
+        public ProductController(ApplicationDbContext context,
+        ILogger<ProductController> logger)
         {
             _pageSize = 3;
             _context = context;
+            _logger = logger;
         }
 
         [Route("Catalog")]
         [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
+            //var groupMame = group.HasValue
+            //    ? _context.DishGroups.Find(group.Value)?.GroupName
+            //    : "all groups";
+            //_logger.LogInformation($"info: group={group}, page={pageNo}");
             var dishesFiltered = _context.Dishes
             .Where(d => !group.HasValue || d.DishGroupId == group.Value);
             // Поместить список групп во ViewData
@@ -36,6 +44,6 @@ namespace Igi_project.Controllers
                 return PartialView("_listpartial", model);
             else
                 return View(model);
-        }              
+        }
     }
 }
