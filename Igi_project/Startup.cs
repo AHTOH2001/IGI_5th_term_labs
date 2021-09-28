@@ -14,6 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Igi_project.Entities;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Http;
+using Igi_project.Services;
+using Igi_project.Models;
 
 namespace Igi_project
 {
@@ -58,6 +61,8 @@ namespace Igi_project
                 opt.Cookie.HttpOnly = true;
                 opt.Cookie.IsEssential = true;
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<Cart>(sp => CartService.GetCart(sp));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

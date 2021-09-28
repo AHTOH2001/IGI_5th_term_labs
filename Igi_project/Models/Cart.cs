@@ -16,7 +16,7 @@ namespace Igi_project.Models
         /// <summary>
         /// Количество объектов в корзине
         /// </summary>
-        public int Count
+        virtual public int Count
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Igi_project.Models
         /// <summary>
         /// Количество калорий
         /// </summary>
-        public int Calories
+        virtual public int Calories
         {
             get
             {
@@ -37,7 +37,7 @@ namespace Igi_project.Models
         /// Добавление в корзину
         /// </summary>
         /// <param name="dish">добавляемый объект</param>
-        public void AddToCart(Dish dish)
+        virtual public void AddToCart(Dish dish)
         {
             // если объект есть в корзине
             // то увеличить количество
@@ -55,14 +55,14 @@ namespace Igi_project.Models
         /// Удалить объект из корзины
         /// </summary>
         /// <param name="id">id удаляемого объекта</param>
-        public void RemoveFromCart(int id)
+        virtual public void RemoveFromCart(int id)
         {
             Items.Remove(id);
         }
         /// <summary>
         /// Очистить корзину
         /// </summary>
-        public void ClearAll()
+        virtual public void ClearAll()
         {
             Items.Clear();
         }
