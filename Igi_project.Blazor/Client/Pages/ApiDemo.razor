@@ -1,6 +1,15 @@
-﻿@page "/apidemo"
+﻿@using Igi_project.Blazor.Client.Components
+@page "/apidemo"
 @inject HttpClient client
 <div class="container">
-    <h3>Страница ApiDemo</h3>
+    <DishesList @bind-Dishes="@Dishes"></DishesList>
 </div>
-@code { }
+@code {
+    [Parameter]
+    public IEnumerable<ListViewModel> Dishes { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        Dishes = await
+        client.GetFromJsonAsync<IEnumerable<ListViewModel>>("api/dishes");
+    }
+}
