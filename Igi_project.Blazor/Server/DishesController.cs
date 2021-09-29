@@ -23,9 +23,11 @@ namespace Igi_project.Blazor.Server
 
         // GET: api/Dishes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Dish>>> GetDishes()
+        public async Task<ActionResult<IEnumerable<Dish>>> GetDishes(int? group)
         {
-            return await _context.Dishes.ToListAsync();
+            var dishes = _context.Dishes.Where(
+            d => !group.HasValue || d.DishGroupId == group.Value);
+            return await dishes.ToListAsync();
         }
 
         // GET: api/Dishes/5

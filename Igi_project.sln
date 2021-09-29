@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Igi_project", "Igi_project\Igi_project.csproj", "{74BFBC04-7F60-4884-AF32-0EC2CA143D89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igi_project.Blazor.Server", "Igi_project.Blazor\Server\Igi_project.Blazor.Server.csproj", "{2AFDC122-FD08-4E0F-A07F-643315E17CF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Igi_project.Blazor.Server", "Igi_project.Blazor\Server\Igi_project.Blazor.Server.csproj", "{2AFDC122-FD08-4E0F-A07F-643315E17CF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igi_project.Blazor.Client", "Igi_project.Blazor\Client\Igi_project.Blazor.Client.csproj", "{FD8BC1C8-C3C8-4ABE-AA37-D9381E8C79DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Igi_project.Blazor.Client", "Igi_project.Blazor\Client\Igi_project.Blazor.Client.csproj", "{FD8BC1C8-C3C8-4ABE-AA37-D9381E8C79DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Igi_project.Blazor.Shared", "Igi_project.Blazor\Shared\Igi_project.Blazor.Shared.csproj", "{C6579DDF-843B-43AC-A3DE-D4DEE9E8636B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Igi_project.Blazor.Shared", "Igi_project.Blazor\Shared\Igi_project.Blazor.Shared.csproj", "{C6579DDF-843B-43AC-A3DE-D4DEE9E8636B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
