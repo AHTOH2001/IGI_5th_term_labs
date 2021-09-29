@@ -14,5 +14,10 @@ namespace Igi_project.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
+
+        public ApplicationDbContext()
+        {
+
+        }
     }
 }
